@@ -3,6 +3,9 @@ os.environ["KERAS_BACKEND"] = "tensorflow"
 import numpy as np
 import theano as th
 import theano.tensor as T
+import tensorflow
+from tensorflow.python.ops import control_flow_ops 
+tensorflow.python.control_flow_ops = control_flow_ops
 from keras.utils import np_utils
 import keras.models as models
 from keras.layers import Input,merge
