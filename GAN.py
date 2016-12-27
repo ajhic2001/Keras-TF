@@ -20,7 +20,9 @@ from keras.regularizers import *
 from keras.layers.normalization import *
 from keras.optimizers import *
 from keras.datasets import mnist
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
 import seaborn as sns
 from tqdm import tqdm
 import pickle, random, sys, keras
