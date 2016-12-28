@@ -8,6 +8,7 @@ from tensorflow.python.ops import control_flow_ops
 tensorflow.python.control_flow_ops = control_flow_ops
 from keras.utils import np_utils
 import keras.models as models
+from keras.models import load_model
 from keras.layers import Input,merge
 from keras.layers.core import Reshape,Dense,Dropout,Activation,Flatten,MaxoutDense
 from keras.layers.advanced_activations import LeakyReLU
@@ -228,3 +229,4 @@ def plot_real(n_ex=16, dim=(4, 4), figsize=(10, 10)):
 K.set_value(opt.lr, 1e-5)
 K.set_value(dopt.lr, 1e-6)
 train_for_n(nb_epoch=100, plt_frq=10,BATCH_SIZE=256)
+model.save('my_model.h5')  # creates a HDF5 file 'my_model.h5'
