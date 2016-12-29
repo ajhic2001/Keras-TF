@@ -1,38 +1,24 @@
 import os,random
 os.environ["KERAS_BACKEND"] = "tensorflow"
 import numpy as np
-import theano as th
-import theano.tensor as T
 import tensorflow
-from tensorflow.python.ops import control_flow_ops 
+from tensorflow.python.ops import control_flow_ops
 tensorflow.python.control_flow_ops = control_flow_ops
-from keras.utils import np_utils
-import keras.models as models
-from keras.models import load_model
-from keras.layers import Input,merge
-from keras.layers.core import Reshape,Dense,Dropout,Activation,Flatten,MaxoutDense
+from keras.layers import Input
+from keras.layers.core import Reshape,Dense,Dropout,Activation,Flatten
 from keras.layers.advanced_activations import LeakyReLU
-from keras.activations import *
-from keras.layers.wrappers import TimeDistributed
-from keras.layers.noise import GaussianNoise
-from keras.layers.convolutional import Convolution2D, MaxPooling2D, ZeroPadding2D, Deconv2D, UpSampling2D
-from keras.layers.recurrent import LSTM
-from keras.regularizers import *
+from keras.layers.convolutional import Convolution2D, UpSampling2D
 from keras.layers.normalization import *
 from keras.optimizers import *
 from keras.datasets import mnist
 import matplotlib
 matplotlib.use('Agg')
 from matplotlib import pyplot as plt
-import seaborn as sns
 from tqdm import tqdm
-import pickle, random, sys, keras
+import random, sys
 from keras.models import Model
 
-#54.206.50.68
 sys.path.append("../common")
-from keras.utils import np_utils
-#from tqdm import tqdm
 
 K.set_image_dim_ordering('th')
 
@@ -64,10 +50,6 @@ dropout_rate = 0.25
 
 opt = Adam(lr=1e-3)
 dopt = Adam(lr=1e-4)
-#opt = Adam(lr=1e-3)
-#opt = Adamax(lr=1e-4)
-#opt = Adam(lr=0.0002)
-#opt = Adam(lr=0.0002, beta_1=0.5, beta_2=0.999, epsilon=1e-08)
 nch = 200
 
 # Build Generative model ...
@@ -228,5 +210,6 @@ def plot_real(n_ex=16, dim=(4, 4), figsize=(10, 10)):
 
 K.set_value(opt.lr, 1e-5)
 K.set_value(dopt.lr, 1e-6)
-train_for_n(nb_epoch=100, plt_frq=10,BATCH_SIZE=256)
-model.save('my_model.h5')  # creates a HDF5 file 'my_model.h5'
+train_for_n(nb_epoch=6000, plt_frq=25,BATCH_SIZE=32)
+GAN.save('GAN-model.h5')
+discriminator.save('discriminator_model.h5')
